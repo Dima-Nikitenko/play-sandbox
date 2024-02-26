@@ -16,12 +16,12 @@ jobs:
     - name: Build Docker img
       run: docker build . -t docker-playwright
     - name: Run Docker tests
-      run: docker run docker run -v ${PWD}/allure-results:/app/allure-results docker-playwright
+      run: docker run docker-playwright
     - name: Publish Allure reports
       run: docker run docker-playwright
     - uses: actions/upload-artifact@v3
       if: always()
       with:
-        name: allure-results
-        path: allure-results/
+        name: playwright-report
+        path: playwright-report/
         retention-days: 3
