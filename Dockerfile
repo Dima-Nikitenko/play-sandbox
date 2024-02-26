@@ -12,4 +12,4 @@ RUN npx playwright install --with-deps
 
 COPY . .
 
-CMD npx playwright test && allure generate --clean allure-results
+CMD npx playwright test
