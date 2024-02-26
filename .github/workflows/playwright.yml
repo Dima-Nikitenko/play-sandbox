@@ -14,7 +14,7 @@ jobs:
       with:
         node-version: 18
     - name: Build Docker img
-      run: docker build . docker-playwright
+      run: docker build . -t docker-playwright
     - name: Run Docker tests
       run: docker run docker-playwright
     # - name: Install dependencies
