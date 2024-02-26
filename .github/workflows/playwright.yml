@@ -18,7 +18,7 @@ jobs:
     - name: Run Docker tests
       run: docker run -v $(pwd)/allure-results:/playwright/allure-results docker-playwright
     - name: Get Allure history
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       if: always()
       continue-on-error: true
       with:
@@ -30,7 +30,7 @@ jobs:
       if: always()
       id: allure-report
       with:
-        allure_results: target/allure-results
+        allure_results: allure-results
         gh_pages: gh-pages
         allure_report: allure-report
         allure_history: allure-history
