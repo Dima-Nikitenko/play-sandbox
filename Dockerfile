@@ -4,7 +4,7 @@ WORKDIR /playwright
 
 COPY package*.json ./
 
-RUN apt update && apt install default-jdk
+RUN apt-get update && apt-get install default-jdk
 
 RUN npm install
 
