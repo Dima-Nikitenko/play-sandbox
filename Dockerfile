@@ -2,7 +2,7 @@ FROM node:latest
 
 WORKDIR /playwright
 
-VOLUME allure-results:/playwright/allure-results
+VOLUME (pwd)/allure-results:/playwright/allure-results
 
 COPY package*.json ./
 
