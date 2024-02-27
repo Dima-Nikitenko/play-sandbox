@@ -19,25 +19,8 @@ jobs:
       run: docker run -v $(pwd)/allure-results:/playwright/allure-results docker-playwright
     - name: Allure report
       run: npx allure-commandline generate --clean -o allure-report allure-results
-      continue-on-error: true
     - name: Publish report to Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./allure-report
-    - name: Extract Allure Report Link
-      id: extract-link
-      run: |
-        allureReportLink="https://${{ github.actor }}.github.io/${{ github.repository }}/allure-report"
-        # echo "::set-output name=allure_report_link::${allureReportLink}"
-    - name: Add Allure Report Link to Job Output
-      if: success()
-      run: |
-        echo "Allure Report: ${{ steps.extract-link.outputs.allure_report_link }}"
-    
-      
-    # - name: Publish report
-    #   uses: actions/upload-artifact@v2
-    #   with: 
-    #     name: allure-report
-    #     path: allure-report
