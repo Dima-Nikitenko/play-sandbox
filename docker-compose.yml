@@ -5,4 +5,3 @@ services:
     volumes:
       - ./allure-results:/playwright/allure-results
       - ./allure-report:/playwright/allure-report
-    command: npx allure-commandline generate --clean -o allure-report allure-results
