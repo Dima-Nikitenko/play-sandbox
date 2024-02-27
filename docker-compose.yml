@@ -2,5 +2,3 @@ version: "3.8"
 services:
   docker-playwright:
     build: .
-    volumes:
-      - $(pwd)/allure-results:/playwright/allure-results
