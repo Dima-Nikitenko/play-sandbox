@@ -29,7 +29,8 @@ jobs:
       id: extract-link
       run: |
         allureReportLink="https://${{ github.actor }}.github.io/${{ github.repository }}/allure-report"
-    - name: ALLURE REPORT
+        # echo "::set-output name=allure_report_link::${allureReportLink}"
+    - name: Add Allure Report Link to Job Output
       if: success()
       run: |
         echo "Allure Report: ${{ steps.extract-link.outputs.allure_report_link }}"
