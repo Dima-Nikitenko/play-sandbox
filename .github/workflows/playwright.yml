@@ -19,8 +19,28 @@ jobs:
       run: docker run -v $(pwd)/allure-results:/playwright/allure-results docker-playwright
     - name: Allure report
       run: npx allure-commandline generate --clean -o allure-report allure-results
-    - name: Publish report
-      uses: actions/upload-artifact@v2
-      with: 
-        name: allure-report
-        path: allure-report
+    - name: Publish report to Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./allure-report
+    - name: Add Allure Report Link to Pull Request
+      uses: actions/github-script@v5
+      with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const repo = context.repo;
+            const allureReportLink = `https://${repo.owner}.github.io/${repo.repo}/allure-report`;
+            github.issues.createComment({
+              issue_number: prNumber,
+              owner: repo.owner,
+              repo: repo.repo,
+              body: `Allure report is available [here](${allureReportLink}).`,
+            });
+      
+    # - name: Publish report
+    #   uses: actions/upload-artifact@v2
+    #   with: 
+    #     name: allure-report
+    #     path: allure-report
