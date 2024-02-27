@@ -2,8 +2,6 @@ FROM node:latest
 
 WORKDIR /playwright
 
-VOLUME ./allure-results
-
 COPY package*.json ./
 
 RUN npm install
